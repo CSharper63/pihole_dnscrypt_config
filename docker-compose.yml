@@ -12,7 +12,7 @@ services:
       WEBPASSWORD: ${PIHOLE_PASSWORD}
       ServerIP: ${RASPBERRY_IP}
       TEMPERATUREUNIT: 'c'
-      PIHOLE_DNS_: ${DNSCRYPT_IP}#53
+      PIHOLE_DNS_: ${DNSCRYPT_IP}#5053
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
@@ -26,7 +26,7 @@ services:
     container_name: dnscrypt-proxy
     image: klutchell/dnscrypt-proxy:latest
     ports:
-      - "53:53/udp"
+      - "5053:5053/udp"
     environment:
       - TZ=Europe/Paris
     volumes:
