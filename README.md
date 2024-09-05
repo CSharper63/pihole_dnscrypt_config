@@ -8,12 +8,18 @@ First of all, you need a raspberry pi. Set a static ip on it and connect it to y
 
 - Set in your router the raspberry ip address as DNS ip. 
 - Install [docker](https://docs.docker.com/engine/install/raspberry-pi-os/).
-- Install portainer to get a cool UI of your dockers status: ```sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest``` (optional)
+- Install portainer to get a cool UI of your dockers status (optional):
+    ```bash
+    sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+    ```
 - Create a new directory ```config_pihole``` on your home folder (pi by default ```~```) and get in.
 - Pull this repo.
 - Change network details and pihole password in ```.env``` if needed.
     > The ```.env``` file contains the ip addresses of containers in docker. You should not modify it if not specially needed.
-- Run ```sudo docker compose up -d```.
+- Run this:
+    ```bash
+    sudo docker compose up -d
+    ```
 - It should work :).
 
 
