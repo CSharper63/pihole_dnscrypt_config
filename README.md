@@ -8,11 +8,11 @@ First of all, you need a raspberry pi. Set a static ip on it and connect it to y
 
 - Set in your router the raspberry ip address as DNS ip. 
 - Install [docker](https://docs.docker.com/engine/install/raspberry-pi-os/).
-- Create a new directory ```config_pihole``` on your home folder (pi by default ```~```)
+- Create a new directory ```config_pihole``` on your home folder (pi by default ```~```) and get in.
 - Pull this repo.
 - Change network details and pihole password in ```.env``` if needed.
     > The ```.env``` file contains the ip addresses of containers in docker. You should not modify it if not specially needed.
-- Run ```sudo docker compose up -d```
+- Run ```sudo docker compose up -d```.
 - It should work :).
 
 
