@@ -10,9 +10,9 @@ services:
     environment:
       TZ: 'Europe/Paris'
       WEBPASSWORD: ${PIHOLE_PASSWORD}
-      ServerIP: ${PIHOLE_IP}
+      ServerIP: ${RASPBERRY_IP}
       TEMPERATUREUNIT: 'c'
-      PIHOLE_DNS_: ${DNSCRYPT_IP}#5053
+      PIHOLE_DNS_: ${DNSCRYPT_IP}#53
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
@@ -26,7 +26,7 @@ services:
     container_name: dnscrypt-proxy
     image: klutchell/dnscrypt-proxy:latest
     ports:
-      - "5053:5053/udp"
+      - "53:53/udp"
     environment:
       - TZ=Europe/Paris
     volumes:
@@ -41,6 +41,7 @@ networks:
     name: pihole_network
     driver: bridge
     ipam:
+      driver: default
       config:
         - subnet: ${SUBNET}
           gateway: ${GATEWAY}
