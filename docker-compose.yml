@@ -1,0 +1,46 @@
+services:
+  # pihole container
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: 'Europe/Paris'
+      WEBPASSWORD: ${PIHOLE_PASSWORD}
+      ServerIP: ${PIHOLE_IP}
+      TEMPERATUREUNIT: 'c'
+      PIHOLE_DNS_: ${DNSCRYPT_IP}#5053
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    networks:
+      pihole_network:
+        ipv4_address: ${PIHOLE_IP}
+    restart: always
+  
+  # dnscrypt container, all pihole requests will be forwarded to it
+  dnscrypt-proxy:
+    container_name: dnscrypt-proxy
+    image: klutchell/dnscrypt-proxy:latest
+    ports:
+      - "5053:5053/udp"
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - './dnscrypt/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml'
+    restart: always
+    networks:
+      pihole_network:
+        ipv4_address: ${DNSCRYPT_IP}
+
+networks:
+  pihole_network:
+    name: pihole_network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${SUBNET}
+          gateway: ${GATEWAY}
