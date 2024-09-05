@@ -7,7 +7,7 @@ This repository contains a working docker configuration for pihole and dnscrypt 
 First of all, you need a raspberry pi. Set a static ip on it and connect it to your router.
 
 - Set in your router the raspberry ip address as DNS ip. 
-- Install docker.
+- Install [docker](https://docs.docker.com/engine/install/raspberry-pi-os/).
 - Create a new directory ```config_pihole``` on your home folder (pi by default ```~```)
 - Pull this repo.
 - Change network details and pihole password in ```.env``` if needed.
