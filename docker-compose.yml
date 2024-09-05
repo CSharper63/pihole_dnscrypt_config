@@ -12,7 +12,7 @@ services:
       WEBPASSWORD: ${PIHOLE_PASSWORD}
       ServerIP: ${RASPBERRY_IP}
       TEMPERATUREUNIT: 'c'
-      PIHOLE_DNS_: ${DNSCRYPT_IP}#5053
+      PIHOLE_DNS_: ${DNSCRYPT_IP}#53
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
