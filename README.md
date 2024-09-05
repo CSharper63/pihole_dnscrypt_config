@@ -22,6 +22,16 @@ First of all, you need a raspberry pi. Set a static ip on it and connect it to y
     ```
 - It should work :).
 
+## ```.env``` file explanation
+
+These 4 fields should not be modified if you don't have specific configuration: 
+- ```SUBNET```: arbitrary subnet for Pihole and DNSCrypt.
+- ```GATEWAY```: gateway of your ```SUBNET```.
+- ```DNSCRYPT_IP```: ip from ```SUBNET``` assigned to DNSCrypt docker.
+- ```PIHOLE_IP```: ip from ```SUBNET``` assigned to Pihole docker.
+
+- ```RASPBERRY_IP```: real ip of your raspberry in your physical network. This setting is used in docker config of your pihole to match UI portal ip with the physical raspberry ip to avoid 403 error. 
+- ```PIHOLE_PASSWORD```: password of pihole portal.
 
 ## Advanced settings
 
