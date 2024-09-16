@@ -13,6 +13,7 @@ services:
       ServerIP: ${RASPBERRY_IP}
       TEMPERATUREUNIT: 'c'
       PIHOLE_DNS_: ${DNSCRYPT_IP}#53
+      VIRTUAL_HOST: pihole
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
@@ -28,7 +29,7 @@ services:
     ports:
       - "5053:5053/udp"
     environment:
-      - TZ=Europe/Paris
+      TZ: Europe/Paris
     volumes:
       - './dnscrypt/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml'
     restart: always
