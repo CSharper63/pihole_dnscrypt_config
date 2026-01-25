@@ -8,30 +8,30 @@ services:
       - "53:53/udp"
       - "80:80/tcp"
     environment:
-      TZ: 'Europe/Paris'
-      WEBPASSWORD: ${PIHOLE_PASSWORD}
+      TZ: "Europe/Paris"
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       ServerIP: ${RASPBERRY_IP}
-      TEMPERATUREUNIT: 'c'
-      PIHOLE_DNS_: ${DNSCRYPT_IP}#53
+      TEMPERATUREUNIT: "c"
+      PIHOLE_DNS_: ${DNSCRYPT_IP}#5053
       VIRTUAL_HOST: pihole
     volumes:
-      - './etc-pihole:/etc/pihole'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+      - "./etc-pihole:/etc/pihole"
+      #- "./etc-dnsmasq.d:/etc/dnsmasq.d"
     networks:
       pihole_network:
         ipv4_address: ${PIHOLE_IP}
     restart: always
-  
+    
   # dnscrypt container, all pihole requests will be forwarded to it
   dnscrypt-proxy:
     container_name: dnscrypt-proxy
     image: klutchell/dnscrypt-proxy:latest
     ports:
-      - "5053:5053/udp"
+      - "5053:53/udp"
     environment:
       TZ: Europe/Paris
     volumes:
-      - './dnscrypt/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml'
+      - "./dnscrypt/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml"
     restart: always
     networks:
       pihole_network:
